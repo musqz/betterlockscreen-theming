@@ -25,7 +25,7 @@ _(do not rename scripts - they depend on each other)_
 
 2. **betterlock-themes** – select and activate existing themes
 
-3. **betterlock-menu** – **main menu / launcher** for generator, selector, and lockscreen actions4
+3. **betterlock-menu** – **main menu**
 
 ## Features
 
