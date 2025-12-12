@@ -104,10 +104,10 @@ cd betterlockscreen-mabox-themes
 2. Install the scripts:
 
 ```
+chmod +x betterlock-*
 cp betterlock-theme-generator ~/bin/
 cp betterlock-themes ~/bin/
 cp betterlock-menu ~/bin/
-chmod +x ~/bin/betterlock-*
 ```
 
 ## Usage
