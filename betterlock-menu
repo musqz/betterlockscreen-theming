@@ -1,86 +1,177 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Configuratie
+##############################################
+# Configuration
+##############################################
+
 CONFIG_DIR="$HOME/.config/betterlockscreen"
 THEMES_DIR="$CONFIG_DIR/themes"
+WALLPAPER_DIR="$CONFIG_DIR/wallpapers"
 
-ICON="$HOME/.icons/mb-logo-3d.svg"
+[ -f "$CONFIG_DIR/config" ] && . "$CONFIG_DIR/config"
 
-# Detecteer taal
-LANG_SHORT="${LANG:0:2}"
+##############################################
+# Dependency checks
+##############################################
 
-case "$LANG_SHORT" in
-    nl)
-        TITLE="Betterlockscreen Thema Manager"
-        TXT_CHOOSE_ACTION="Kies een actie:"
-        TXT_SELECT_THEME="Thema Kiezen"
-        TXT_REGENERATE="Genereer Thema"
-        TXT_HELP="Help"
-        TXT_EXIT="Afsluiten"
-        TXT_OK="Sluiten"
-        TXT_CHOOSE_THEME="Kies een bestaand thema:"
-        TXT_NO_THEMES="Geen thema's gevonden in $THEMES_DIR"
-        TXT_HELP_TEXT="Dit script laat je bestaande Betterlockscreen-thema’s selecteren of een nieuw thema genereren met behulp van het YAD-menu.
-Thema’s worden opgeslagen in:\n<b>$THEMES_DIR</b>\n\nGebruik het generator-script om een nieuw thema aan te maken of een bestaand thema opnieuw te genereren."
-        ;;
-    es)
-        TITLE="Betterlockscreen Gestor de Temas"
-        TXT_CHOOSE_ACTION="Elige una acción:"
-        TXT_SELECT_THEME="Seleccionar Tema"
-        TXT_REGENERATE="Generar Tema"
-        TXT_HELP="Ayuda"
-        TXT_EXIT="Salir"
-        TXT_OK="Cerrar"
-        TXT_CHOOSE_THEME="Selecciona un tema existente:"
-        TXT_NO_THEMES="No se encontraron temas en $THEMES_DIR"
-        TXT_HELP_TEXT="Este script te permite seleccionar temas existentes de Betterlockscreen o generar uno nuevo mediante un menú YAD.
-Los temas se guardan en:\n<b>$THEMES_DIR</b>\n\nUtiliza el script de generación para crear un nuevo tema o regenerar uno existente."
-        ;;
-    *)
-        TITLE="Betterlockscreen Theme Manager"
-        TXT_CHOOSE_ACTION="Choose an action:"
-        TXT_SELECT_THEME="Select Theme"
-        TXT_REGENERATE="Generate Theme"
-        TXT_HELP="Tips and Tricks"
-        TXT_EXIT="Exit"
-        TXT_OK="Close"
-        TXT_CHOOSE_THEME="Choose an existing theme:"
-        TXT_NO_THEMES="No themes found in $THEMES_DIR"
-        TXT_HELP_TEXT="<b>[SLOW PROCESS]  betterlockscreen -u [image_path]:</b> \n 
-This command updates your lockscreen image, 
-including applaying changes for <b><i>loginbox background and shadow.</i></b> \n
-<b>[QUICK PROCESS] betterlockscreen -l:</b> \n
-See instantly new changes, like font. 
-<b><i>Excluded loginbox background and shadow.</i></b> \n"
-
-        ;;
-esac
-
-# 📘 Functies
-
-show_help() {
-    yad   --center --title="$TXT_HELP" \
-      --window-icon=$ICON \
-        --text="$TXT_HELP_TEXT" --button="$TXT_OK:0"
+command -v yad >/dev/null 2>&1 || {
+    echo "Error: yad is not installed." >&2
+    exit 1
 }
 
-show_main_menu() {
-    local choice
-    choice=$(yad --width=350 --height=100 --center --title="$TITLE" \
-        --window-icon=$ICON \
-        --text="<b>$TITLE</b>\n\n$TXT_CHOOSE_ACTION" \
-        --button="🎨 $TXT_SELECT_THEME:1" \
-        --button="🛠️ $TXT_REGENERATE:2" \
-        --button="🛈 $TXT_HELP:3" \
-        --button="🚪 $TXT_EXIT:0")
+command -v betterlockscreen >/dev/null 2>&1 || {
+    echo "Warning: betterlockscreen not found. Some actions won't work." >&2
+}
 
-    case $? in
-        1) betterlock-themes ; betterlock-menu ;;
-        2) betterlock-theme-generator ; betterlock-menu ;;
-        3) show_help; show_main_menu ;;
-        0) exit 0 ;;
+##############################################
+# Helpers
+##############################################
+
+err() {
+    yad --title="Fout" \
+        --text="$1" \
+        --center \
+        --button="OK:0" \
+        --width=300 \
+        --height=100
+}
+
+choose_from_list() {
+    local title="$1"
+    shift
+
+    local items=("$@")
+    local list_entries=()
+
+    for it in "${items[@]}"; do
+        list_entries+=("$it")
+    done
+
+    yad --title="$title" \
+        --list \
+        --column="Optie" \
+        --height=400 \
+        --width=300 \
+        --center \
+        --print-column=1 \
+        -- "${list_entries[@]}"
+}
+
+##############################################
+# Theme selection
+##############################################
+
+choose_theme() {
+    if [ ! -d "$THEMES_DIR" ]; then
+        err "Geen thema-map gevonden."
+        return 1
+    fi
+
+    local themes=()
+    for t in "$THEMES_DIR"/*; do
+        [ -d "$t" ] && themes+=("$(basename "$t")")
+    done
+
+    if [ "${#themes[@]}" -eq 0 ]; then
+        err "Geen thema's gevonden."
+        return 1
+    fi
+
+    local choice
+    choice="$(choose_from_list 'Kies thema' "${themes[@]}")" || return 1
+
+    [ -z "$choice" ] && return 1
+
+    betterlockscreen -u "$THEMES_DIR/$choice" || err "Kon thema niet toepassen."
+}
+
+##############################################
+# Wallpaper selection
+##############################################
+
+choose_wallpaper() {
+    if [ ! -d "$WALLPAPER_DIR" ]; then
+        err "Geen wallpaper-map gevonden."
+        return 1
+    fi
+
+    local walls=()
+    for w in "$WALLPAPER_DIR"/*; do
+        [ -f "$w" ] && walls+=("$(basename "$w")")
+    done
+
+    if [ "${#walls[@]}" -eq 0 ]; then
+        err "Geen wallpapers gevonden."
+        return 1
+    fi
+
+    local choice
+    choice="$(choose_from_list 'Kies wallpaper' "${walls[@]}")" || return 1
+
+    [ -z "$choice" ] && return 1
+
+    betterlockscreen -u "$WALLPAPER_DIR/$choice" || err "Kon wallpaper niet toepassen."
+}
+
+##############################################
+# Lock screen
+##############################################
+
+lock_screen() {
+    betterlockscreen -l || err "Kon scherm niet vergrendelen."
+}
+
+##############################################
+# Settings menu
+##############################################
+
+settings_menu() {
+    local options=(
+        "Update theme"
+        "Update wallpaper"
+        "Regenerate cached images"
+    )
+
+    local choice
+    choice="$(choose_from_list 'Instellingen' "${options[@]}")" || return 1
+
+    case "$choice" in
+        "Update theme") choose_theme ;;
+        "Update wallpaper") choose_wallpaper ;;
+        "Regenerate cached images")
+            betterlockscreen -r || err "Kon cache niet regenereren."
+            ;;
     esac
 }
 
-# Start
-show_main_menu
+##############################################
+# Main menu
+##############################################
+
+main_menu() {
+    local options=(
+        "Vergrendel scherm"
+        "Kies thema"
+        "Kies wallpaper"
+        "Instellingen"
+        "Afsluiten"
+    )
+
+    local choice
+    choice="$(choose_from_list 'Betterlock Menu' "${options[@]}")" || exit 0
+
+    case "$choice" in
+        "Vergrendel scherm") lock_screen ;;
+        "Kies thema") choose_theme ;;
+        "Kies wallpaper") choose_wallpaper ;;
+        "Instellingen") settings_menu ;;
+        "Afsluiten") exit 0 ;;
+    esac
+}
+
+##############################################
+# Run
+##############################################
+
+main_menu
