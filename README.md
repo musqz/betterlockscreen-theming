@@ -127,3 +127,15 @@ betterlock-menu
 ```
 
 
+## .Desktop template
+
+```
+[Desktop Entry]
+Name=Betterlock Theme 
+Comment=Choose betterlockscreen theme
+Exec=/path/to/betterlock-menu
+Icon=system-lock-screen
+Terminal=false
+Type=Application
+Categories=Settings;Utility;
+```
