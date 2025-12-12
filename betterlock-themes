@@ -1,11 +1,11 @@
 #!/bin/bash
 
+# Made with and for Mabox linux systems.
 # Betterlock-Themes - Theme Chooser + Optional Image Cache Updater
+# Needed scripts: betterlock-theme-generator, betterlock-themes.
 
 THEME_DIR="$HOME/.config/betterlockscreen/themes"
 OUTPUT_FILE="$HOME/.config/betterlockscreen/betterlockscreenrc"
-
-
 ICON="$HOME/.icons/mb-logo-3d.svg"
 
 
@@ -80,27 +80,40 @@ SELECTED=$(yad --list \
 # Thema pad opzoeken
 SELECTED_FILE="$THEME_DIR/$SELECTED.theme"
 
-# Vraag of gebruiker ook -u wil doen
+# Vraag of gebruiker ook -u wil doen en eventueel achtergrondpad
 DO_UPDATE=$(yad --form \
   --window-icon=$ICON \
   --title="$_OPTIONS" \
   --center \
   --field="$CHECK_LABEL:CHK" FALSE \
-  --button="OK:0" --button="Cancel:1")
+  --field="Custom Background Path:FL" "" \
+  --separator="|" \
+  --button="OK:0" --button="Cancel:1" \
+  --width=500 \
+  --height=100 \
+  --align=center)
 
 [[ $? -ne 0 ]] && exit 1
 
-# Haal waarde uit checkbox (0=false, 1=true)
+# Haal waarde uit checkbox en textfield
 UPDATE_IMAGE=$(echo "$DO_UPDATE" | cut -d"|" -f1)
+CUSTOM_BG=$(echo "$DO_UPDATE" | cut -d"|" -f2)
 
 # Thema controleren en wegschrijven
 if [[ -f "$SELECTED_FILE" ]]; then
   cp "$SELECTED_FILE" "$OUTPUT_FILE"
   
   if [[ "$UPDATE_IMAGE" == "TRUE" ]]; then
-    source <(grep file ~/.config/nitrogen/bg-saved.cfg)
+    # Gebruik opgegeven achtergrond als die er is, anders default wallpaper
+    if [[ -n "$CUSTOM_BG" && -f "$CUSTOM_BG" ]]; then
+        BG_PATH="$CUSTOM_BG"
+    else
+        source <(grep file ~/.config/nitrogen/bg-saved.cfg)
+        BG_PATH="$file"
+    fi
+    
     notify-send.sh -u critical -i emblem-photos -R /tmp/mbscreencache "$TITLE" "$TEXT"
-    betterlockscreen -u "$file"
+    betterlockscreen -u "$BG_PATH"
     notify-send.sh -u normal -i emblem-photos -R /tmp/mbscreencache "$TITLE2" "$TEXT2"
   fi
 
