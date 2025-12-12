@@ -3,7 +3,7 @@
 This repository provides a set of tools designed **exclusively for Mabox Linux** to manage, generate, and select custom Betterlockscreen color themes.
 The scripts integrate with Mabox’s desktop configuration logic, including its wallpaper handling and theming approach.
 
-![BETTERLOCKSCREEN THEME GENERATION DEMO](demo/demo.mp4)
+![BETTERLOCKSCREEN THEME GENERATION DEMO](demo/demo.mp4){width 350 pix}
 
 The toolkit consists of:
 
