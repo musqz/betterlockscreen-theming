@@ -23,16 +23,6 @@ It integrates with Mabox’s wallpaper system and desktop theming logic.
 2. **betterlock-themes** – select and activate existing themes
 3. **betterlock-menu** – **main menu / launcher** for generator, selector, and lockscreen actions
 
-**Important:** The **main script to use** is:
-
-```
-betterlock-menu
-```
-
-It acts as a central launcher for all other functions.
-
----
-
 ## Features
 
 ### 1. Theme Generator (`betterlock-theme-generator`)
