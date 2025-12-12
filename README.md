@@ -21,7 +21,7 @@ It integrates with Mabox’s wallpaper system and desktop theming logic.
 
 1. **betterlock-theme-generator** – interactive color theme generator
 2. **betterlock-themes** – select and activate existing themes
-3. **betterlock-menu** – **main menu / launcher** for generator, selector, and lockscreen actions
+3. **betterlock-menu** – **main menu / launcher** for generator, selector, and lockscreen actions4
 
 ## Features
 
@@ -82,9 +82,7 @@ When applying or previewing themes:
 
 ## Mabox Linux Integration
 
-* Generated themes automatically respect Mabox’s wallpaper settings
 * Changing the desktop wallpaper updates the source image for background regeneration
-* Once regenerated, login box images and shadows are cached for reuse
 
 ---
 
