@@ -17,10 +17,11 @@ It integrates with Mabox’s wallpaper system and desktop theming logic.
 
 ![BETTERLOCKSCREEN THEME GENERATION DEMO](demo/demo.mp4)
 
-## Main Scripts
+## Scripts involved
 
 1. **betterlock-theme-generator** – interactive color theme generator
 2. **betterlock-themes** – select and activate existing themes
+
 3. **betterlock-menu** – **main menu / launcher** for generator, selector, and lockscreen actions4
 
 ## Features
@@ -52,13 +53,15 @@ Saved themes can then be selected using **betterlock-themes**.
 
 ---
 
-### 3. Lock Menu (`betterlock-menu`)
+### 3. Main Menu (`betterlock-menu`)
 
-* Provides a simple menu or GUI interface
+* Provides the main menu. a simple GUI interface (yad)
 * Common actions:
 
-	* Select an existing theme
+	* Select a theme
 	* Generate a new theme
+	* help
+	* exit
   
 ---
 
