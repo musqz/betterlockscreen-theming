@@ -11,7 +11,7 @@
 # Betterlockscreen Theme Toolkit for Mabox Linux
 
 This toolkit provides **user-friendly scripts** to generate, select, and apply custom Betterlockscreen themes on **Mabox Linux**.
-It integrates with Mabox’s wallpaper system and desktop theming logic.
+It integrates with Mabox’s desktop wallpaper.
 
 ---
 
@@ -89,6 +89,8 @@ When applying or previewing themes:
 ## Mabox Linux Integration
 
 * Changing the desktop wallpaper updates the source image for background regeneration
+
+* Or manual do `betterlockscreen -u /path/to/img/` to set your final lock background
 
 ---
 
