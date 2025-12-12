@@ -88,7 +88,8 @@ When applying or previewing themes:
 
 ## Mabox Linux Integration
 
-* Changing the desktop wallpaper updates the source image for background regeneration
+* Changing the desktop wallpaper updates the source image for 
+  betterlockscreen background regeneration
 
 * Or manual do `betterlockscreen -u /path/to/img/` to set your final lock background
 
