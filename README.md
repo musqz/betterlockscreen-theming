@@ -39,6 +39,8 @@ _(do not rename scripts - they depend on each other)_
 * Preview all color variables
 * Save themes directly to:
 
+![PASSWORD WINDOW DEMO](demo/passwin.gif)
+
 ```
 ~/.config/betterlockscreen/themes/
 ```
