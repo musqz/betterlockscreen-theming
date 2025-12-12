@@ -63,10 +63,7 @@ Saved themes can then be selected using **betterlock-themes**.
 * Provides the main menu. a simple GUI interface (yad)
 * Common actions:
 
-	* Select a theme
-	* Generate a new theme
-	* help
-	* exit
+![Main-menu](demo/menu.jpg)
   
 ---
 
