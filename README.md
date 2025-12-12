@@ -90,7 +90,7 @@ When applying or previewing themes:
 * Changing the desktop wallpaper updates the source image for 
   betterlockscreen background regeneration
 
-* Or manual do `betterlockscreen -u /path/to/img/` to set your final lock background
+* Or use custom image path via yad
 
 ---
 
