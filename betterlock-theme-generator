@@ -1,0 +1,256 @@
+#!/bin/bash
+
+# This script generates new color themes for Betterlockscreen.
+# Change font familie on the fly.
+# This script works together with the `betterlock-themes` theme picker to select one of the generated themes.
+# Create a .desktop for quick access
+
+WORK_DIR="$HOME/.config/betterlockscreen"
+THEME_DIR="$WORK_DIR/themes"
+
+mkdir -p "$THEME_DIR"
+
+
+# === Set icon for yad window ===
+ICON="$HOME/.icons/mb-logo-3d.svg"
+
+# === Transparantiehulp ===
+get_alpha() {
+  printf "%02x" "$1"
+}
+
+combine_rgba() {
+  local color="$1" alpha="$2"
+  color="${color/#\#}"  # Strip leading #
+  alpha=$(get_alpha "$alpha")
+  echo "#${color}${alpha}"
+}
+
+# === Kleurselectie met transparantie ===
+color_with_alpha_field() {
+  local label="$1" value="$2" alpha="$3"
+  echo --field="$label:CLR" "$value" --field="$label alpha:NUM" "$alpha!0..255!1"
+}
+
+# === LANGUAGE SETTINGS ===
+case "$LANG" in
+pl*)
+    TITLE="Wybór stylu"
+    CHOOSE_STYLE="Wybierz styl kolorów:"
+    SAVE_AS="Zapisz jako..."
+    ENTER_NAME="Podaj nazwę nowego motywu:"
+    THEME_SAVED="Motyw zapisany jako:"
+    PREVIEW_TITLE="Podgląd motywu"
+    CANCEL="Anuluj"
+    REGENERATE="Wygeneruj ponownie"
+    SAVE="Zapisz"
+# ----- EDYTUJ DOMYŚLNY TEKST WEDŁUG UZNANIA -------------------------- #
+    WELCOME="Witaj, $USER"
+    VERIFTXT="Skanowanie DNA..."
+    WRONGTXT="ODRZUCONO DOSTĘP"
+# --------------------------------------------------------------------- #
+    LOCKSCREEN="Przetestuj ekran blokady"
+    CHOOSE_TXT="Wybierz swój tekst"
+	WELCOME_="Tekst logowania"
+    VERIFTXT_="Tekst weryfikacji"
+    WRONGTXT_="Tekst ostrzeżenia"
+    ;;
+es*)
+    TITLE="Seleccionar estilo"
+    CHOOSE_STYLE="Elige un estilo de color:"
+    SAVE_AS="Guardar como..."
+    ENTER_NAME="Introduce el nombre del nuevo tema:"
+    THEME_SAVED="Tema guardado como:"
+    PREVIEW_TITLE="Vista previa del tema"
+    CANCEL="Cancelar"
+    REGENERATE="Regenerar"
+    SAVE="Guardar"
+# ----- EDITA EL TEXTO PREDETERMINADO A TU GUSTO ---------------------- #
+    WELCOME="Bienvenido, $USER"
+    VERIFTXT="Escaneando ADN..."
+    WRONGTXT="ACCESO DENEGADO"
+# --------------------------------------------------------------------- #
+    LOCKSCREEN="Probar pantalla de bloqueo"
+    CHOOSE_TXT="Elige tu texto"
+    WELCOME_="Texto de inicio de sesión"
+    VERIFTXT_="Texto de verificación"
+    WRONGTXT_="Texto de advertencia"
+    ;;
+*)
+    TITLE="Choose Style"
+    CHOOSE_STYLE="Select a color style:"
+    SAVE_AS="Save As..."
+    ENTER_NAME="Enter a name for the new theme:"
+    THEME_SAVED="Theme saved as:"
+    PREVIEW_TITLE="Theme Preview"
+    CANCEL="Cancel"
+    REGENERATE="Regenerate"
+    SAVE="Save"
+# ----- EDIT DEFAULT TXT TO YOUR LIKING ------------------------------- #
+    WELCOME="Password for $USER"
+    VERIFTXT="Scanning DNA..."
+    WRONGTXT="ACCESS REJECTED"
+# --------------------------------------------------------------------- #
+    WELCOME_="Login Text"
+    VERIFTXT_="Verify Text"
+    WRONGTXT_="Warning Text"
+    LOCKSCREEN="Test lockscreen" 
+    CHOOSE_TXT="Choose Your Text"
+    loginshadow_="Login Box Shadow"
+    loginbox_="Login Box Background"
+	transparent_="Transparent Login Box Background (no shadow)"
+	font_="Set Font"
+	ringcolor_="Ring Color"
+	insidecolor_="Inside Color"
+	separatorcolor_="Seperator Color"
+	ringvercolor_="Ring Ver Color"
+	insidevercolor_="Inside Ver Color"
+	ringwrongcolor_="Ring Wrong Color"
+	insidewrongcolor_="Inside Wrong Color"
+	timecolor_="Time Color"
+	greetercolor_="Greeter Color"
+	layoutcolor_="Layout Color"
+	keyhlcolor_="Key Hole Color"
+	bshlcolor_="Bs Hole Color"
+	verifcolor_="Verify Color"
+	wrongcolor_="Wrong Color"
+	modifcolor_="Modify Color"
+	bgcolor_="Background Color"
+    ;;
+esac
+
+# === CHOOSE STYLE ===
+style=$(yad --list --radiolist --title="$TITLE" --text="$CHOOSE_STYLE" \
+  --window-icon=$ICON \
+  --column="Select" --column="Style" TRUE "Cyberpunk" FALSE "Vibrant" FALSE "Pastel" \
+  --height=250 --width=300 --center)
+
+style=$(echo "$style" | cut -d '|' -f2)
+[[ -z "$style" ]] && exit 1
+
+# === COLOR GENERATORS ===
+random_vibrant() {
+  printf "#%02x%02x%02x\n" $((RANDOM % 256)) $((RANDOM % 256)) $((RANDOM % 256))
+}
+random_pastel() {
+  printf "#%02x%02x%02x\n" $((200 + RANDOM % 55)) $((200 + RANDOM % 55)) $((200 + RANDOM % 55))
+}
+random_cyberpunk() {
+  neon_colors=( "#ff00ff" "#e8ff00" "#8000ff" "#86a3e1" "#00ffcc" "#ff3366" "#33ffcc" "#e8ff00" )
+  echo "${neon_colors[$RANDOM % ${#neon_colors[@]}]}"
+}
+
+get_color() {
+  case "$style" in
+    Cyberpunk) random_cyberpunk ;;
+    Vibrant)   random_vibrant ;;
+    Pastel)    random_pastel ;;
+    *)         echo "00000000" ;;
+  esac
+}
+
+# === CHOOSE TEXTS ===
+text_response=$(yad --width=400 --form --title="$CHOOSE_TXT" --center \
+  --window-icon=$ICON \
+  --field="$WELCOME_" "$WELCOME" \
+  --field="$VERIFTXT_" "$VERIFTXT" \
+  --field="$WRONGTXT_" "$WRONGTXT" \
+  --button="OK:0" )
+	
+IFS="|" read -r WELCOME VERIFTXT WRONGTXT <<< "$text_response"
+
+# === INTERACTIVE THEME GENERATION ===
+while true; do
+  for var in font ringcolor insidecolor separatorcolor ringvercolor insidevercolor \
+             ringwrongcolor insidewrongcolor timecolor greetercolor layoutcolor \
+             keyhlcolor bshlcolor verifcolor wrongcolor modifcolor bgcolor; do
+    declare "$var=$(get_color)"
+  done
+
+loginbox="#000000"
+loginshadow="#000000"
+  
+  response=$(yad --center --form --title="$PREVIEW_TITLE ($style)" \
+    --window-icon=$ICON \
+    --width=400 --height=500 \
+    --button="$CANCEL:1" --button="$REGENERATE:2" --button="$SAVE:0" \
+    --separator="|" \
+    --field="$loginshadow_:CLR" "$loginshadow" \
+    --field="$loginbox_:CLR" "$loginbox" \
+	--field="$transparent_:CHK" "FALSE" \
+    --field="$font_:TXT" "Ubuntu" \
+    --field="$ringcolor_:CLR" "$ringcolor" \
+    --field="$insidecolor_:CLR" "$insidecolor" \
+    --field="$separatorcolor_:CLR" "$separatorcolor" \
+    --field="$ringvercolor_:CLR" "$ringvercolor" \
+    --field="$insidevercolor_:CLR" "$insidevercolor" \
+    --field="$ringwrongcolor_:CLR" "$ringwrongcolor" \
+    --field="$insidewrongcolor_:CLR" "$insidewrongcolor" \
+    --field="$timecolor_:CLR" "$timecolor" \
+    --field="$greetercolor_:CLR" "$greetercolor" \
+    --field="$layoutcolor_:CLR" "$layoutcolor" \
+    --field="$keyhlcolor_:CLR" "$keyhlcolor" \
+    --field="$bshlcolor_:CLR" "$bshlcolor" \
+    --field="$verifcolor_:CLR" "$verifcolor" \
+    --field="$wrongcolor_:CLR" "$wrongcolor" \
+    --field="$modifcolor_:CLR" "$modifcolor" \
+    --field="$bgcolor_:CLR" "$bgcolor")
+
+  case $? in
+    1) exit 1 ;;
+    2) continue ;;
+    0) break ;;
+  esac
+done
+
+IFS="|" read -r \
+  loginshadow loginbox loginbox_trans font ringcolor insidecolor separatorcolor ringvercolor insidevercolor \
+  ringwrongcolor insidewrongcolor timecolor greetercolor layoutcolor \
+  keyhlcolor bshlcolor verifcolor wrongcolor modifcolor bgcolor <<< "$response"
+
+theme_name=$(yad --center --entry --title="$SAVE_AS" --text="$ENTER_NAME" --entry-text="new-$style")
+[[ -z "$theme_name" ]] && exit 1
+
+theme_file="$THEME_DIR/${theme_name}.theme"
+
+if [[ "$loginbox_trans" == "TRUE" ]]; then
+  loginbox="00000000"
+else
+  loginbox="${loginbox/#\#}"
+fi
+
+
+cat > "$theme_file" <<EOF
+loginshadow=${loginshadow/#\#}
+loginbox=${loginbox/#\#}
+locktext="$WELCOME"
+ringcolor=${ringcolor/#\#}cc
+font=${font}
+insidecolor=${insidecolor/#\#}88
+separatorcolor=${separatorcolor/#\#}cc
+ringvercolor=${ringvercolor/#\#}ff
+insidevercolor=${insidevercolor/#\#}88
+ringwrongcolor=${ringwrongcolor/#\#}ff
+insidewrongcolor=${insidewrongcolor/#\#}88
+timecolor=${timecolor/#\#}ff
+time_format=%H:%M:%S
+greetercolor=${greetercolor/#\#}ff
+layoutcolor=${layoutcolor/#\#}ff
+keyhlcolor=${keyhlcolor/#\#}ff
+bshlcolor=${bshlcolor/#\#}ff
+veriftext="$VERIFTXT"
+verifcolor=${verifcolor/#\#}ff
+wrongtext="$WRONGTXT"
+wrongcolor=${wrongcolor/#\#}ff
+modifcolor=${modifcolor/#\#}ff
+bgcolor=${bgcolor/#\#}ff
+EOF
+
+# Show notification window with button to test lockscreen
+yad --form --title="$TITLE" --center \
+  --window-icon=$ICON \
+  --text="$THEME_SAVED\n$theme_file" \
+  --button="OK:0" 
+  
+# === Choose Theme ===
+betterlock-themes

@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# Configuratie
+CONFIG_DIR="$HOME/.config/betterlockscreen"
+THEMES_DIR="$CONFIG_DIR/themes"
+
+ICON="$HOME/.icons/mb-logo-3d.svg"
+
+# Detecteer taal
+LANG_SHORT="${LANG:0:2}"
+
+case "$LANG_SHORT" in
+    nl)
+        TITLE="Betterlockscreen Thema Manager"
+        TXT_CHOOSE_ACTION="Kies een actie:"
+        TXT_SELECT_THEME="Thema Kiezen"
+        TXT_REGENERATE="Genereer Thema"
+        TXT_HELP="Help"
+        TXT_EXIT="Afsluiten"
+        TXT_OK="Sluiten"
+        TXT_CHOOSE_THEME="Kies een bestaand thema:"
+        TXT_NO_THEMES="Geen thema's gevonden in $THEMES_DIR"
+        TXT_HELP_TEXT="Dit script laat je bestaande Betterlockscreen-thema’s selecteren of een nieuw thema genereren met behulp van het YAD-menu.
+Thema’s worden opgeslagen in:\n<b>$THEMES_DIR</b>\n\nGebruik het generator-script om een nieuw thema aan te maken of een bestaand thema opnieuw te genereren."
+        ;;
+    es)
+        TITLE="Betterlockscreen Gestor de Temas"
+        TXT_CHOOSE_ACTION="Elige una acción:"
+        TXT_SELECT_THEME="Seleccionar Tema"
+        TXT_REGENERATE="Generar Tema"
+        TXT_HELP="Ayuda"
+        TXT_EXIT="Salir"
+        TXT_OK="Cerrar"
+        TXT_CHOOSE_THEME="Selecciona un tema existente:"
+        TXT_NO_THEMES="No se encontraron temas en $THEMES_DIR"
+        TXT_HELP_TEXT="Este script te permite seleccionar temas existentes de Betterlockscreen o generar uno nuevo mediante un menú YAD.
+Los temas se guardan en:\n<b>$THEMES_DIR</b>\n\nUtiliza el script de generación para crear un nuevo tema o regenerar uno existente."
+        ;;
+    *)
+        TITLE="Betterlockscreen Theme Manager"
+        TXT_CHOOSE_ACTION="Choose an action:"
+        TXT_SELECT_THEME="Select Theme"
+        TXT_REGENERATE="Generate Theme"
+        TXT_HELP="Tips and Tricks"
+        TXT_EXIT="Exit"
+        TXT_OK="Close"
+        TXT_CHOOSE_THEME="Choose an existing theme:"
+        TXT_NO_THEMES="No themes found in $THEMES_DIR"
+        TXT_HELP_TEXT="<b>[SLOW PROCESS]  betterlockscreen -u [image_path]:</b> \n 
+This command updates your lockscreen image, 
+including applaying changes for <b><i>loginbox background and shadow.</i></b> \n
+<b>[QUICK PROCESS] betterlockscreen -l:</b> \n
+See instantly new changes, like font. 
+<b><i>Excluded loginbox background and shadow.</i></b> \n"
+
+        ;;
+esac
+
+# 📘 Functies
+
+show_help() {
+    yad   --center --title="$TXT_HELP" \
+      --window-icon=$ICON \
+        --text="$TXT_HELP_TEXT" --button="$TXT_OK:0"
+}
+
+show_main_menu() {
+    local choice
+    choice=$(yad --width=350 --height=100 --center --title="$TITLE" \
+        --window-icon=$ICON \
+        --text="<b>$TITLE</b>\n\n$TXT_CHOOSE_ACTION" \
+        --button="🎨 $TXT_SELECT_THEME:1" \
+        --button="🛠️ $TXT_REGENERATE:2" \
+        --button="🛈 $TXT_HELP:3" \
+        --button="🚪 $TXT_EXIT:0")
+
+    case $? in
+        1) betterlock-themes ; betterlock-menu ;;
+        2) betterlock-theme-generator ; betterlock-menu ;;
+        3) show_help; show_main_menu ;;
+        0) exit 0 ;;
+    esac
+}
+
+# Start
+show_main_menu
