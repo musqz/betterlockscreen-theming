@@ -105,9 +105,7 @@ cd betterlockscreen-mabox-themes
 
 ```
 chmod +x betterlock-*
-cp betterlock-theme-generator ~/bin/
-cp betterlock-themes ~/bin/
-cp betterlock-menu ~/bin/
+cp betterlock-* ~/bin/
 ```
 
 ## Usage
