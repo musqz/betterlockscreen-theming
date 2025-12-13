@@ -57,9 +57,9 @@ You’ll see all scripts, icons, and desktop files included.
 
 <img src="demo/demo.jpg" alt="demo" width="720">
 
-## Bash scripts involved
-
 # Manual Instalation Steps
+
+## Bash scripts involved
 
 1. **betterlock-theme-generator** – interactive color theme generator
 
