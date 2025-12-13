@@ -12,9 +12,9 @@ mkdir -p "$THEME_DIR"
 
 
 # === Set icon for yad window ===
-ICON="$HOME/.icons/mb-logo-3d.svg"
+ICON="$HOME/.icons/mabox-logo-3d.svg"
 
-# === Transparantiehulp ===
+# === Transparanty ===
 get_alpha() {
   printf "%02x" "$1"
 }
@@ -26,7 +26,7 @@ combine_rgba() {
   echo "#${color}${alpha}"
 }
 
-# === Kleurselectie met transparantie ===
+# === Color selectie with transparanty ===
 color_with_alpha_field() {
   local label="$1" value="$2" alpha="$3"
   echo --field="$label:CLR" "$value" --field="$label alpha:NUM" "$alpha!0..255!1"
@@ -44,11 +44,11 @@ pl*)
     CANCEL="Anuluj"
     REGENERATE="Wygeneruj ponownie"
     SAVE="Zapisz"
-# ----- EDYTUJ DOMYŚLNY TEKST WEDŁUG UZNANIA -------------------------- #
+### ----- EDYTUJ DOMYŚLNY TEKST WEDŁUG UZNANIA -------------------------- ###
     WELCOME="Witaj, $USER"
     VERIFTXT="Skanowanie DNA..."
     WRONGTXT="ODRZUCONO DOSTĘP"
-# --------------------------------------------------------------------- #
+### --------------------------------------------------------------------- ###
     LOCKSCREEN="Przetestuj ekran blokady"
     CHOOSE_TXT="Wybierz swój tekst"
 	WELCOME_="Tekst logowania"
@@ -65,11 +65,11 @@ es*)
     CANCEL="Cancelar"
     REGENERATE="Regenerar"
     SAVE="Guardar"
-# ----- EDITA EL TEXTO PREDETERMINADO A TU GUSTO ---------------------- #
+### ----- EDITA EL TEXTO PREDETERMINADO A TU GUSTO ---------------------- ###
     WELCOME="Bienvenido, $USER"
     VERIFTXT="Escaneando ADN..."
     WRONGTXT="ACCESO DENEGADO"
-# --------------------------------------------------------------------- #
+### --------------------------------------------------------------------- ###
     LOCKSCREEN="Probar pantalla de bloqueo"
     CHOOSE_TXT="Elige tu texto"
     WELCOME_="Texto de inicio de sesión"
@@ -86,11 +86,11 @@ es*)
     CANCEL="Cancel"
     REGENERATE="Regenerate"
     SAVE="Save"
-# ----- EDIT DEFAULT TXT TO YOUR LIKING ------------------------------- #
+### ----- EDIT DEFAULT TXT TO YOUR LIKING ------------------------------- ###
     WELCOME="Password for $USER"
     VERIFTXT="Scanning DNA..."
     WRONGTXT="ACCESS REJECTED"
-# --------------------------------------------------------------------- #
+### --------------------------------------------------------------------- ###
     WELCOME_="Login Text"
     VERIFTXT_="Verify Text"
     WRONGTXT_="Warning Text"
@@ -253,4 +253,4 @@ yad --form --title="$TITLE" --center \
   --button="OK:0" 
   
 # === Choose Theme ===
-betterlock-themes
+~/bin/betterlock-themes
