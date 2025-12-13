@@ -15,7 +15,39 @@ This toolkit provides **user-friendly scripts** to generate, select, and apply c
 It integrates with Mabox’s desktop wallpaper.
 
 Note: 
-	Need `betterlockscreen` installed and setup for Mabox.
+  * Need `betterlockscreen` installed and setup for Mabox.
+  * Use the `AppImage`, it is quick and clean. _(peek inside help included)_
+
+
+# AppImage betterlock-theming
+
+* Run **directly** via AppImage – no installation needed
+* Cyberpunk, Vibrant, and Pastel themes
+* Edit login, verification, and warning text
+* Transparent or shadowed login boxes
+* Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
+
+	With Mabox Conky_LOGO_SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
+* Custom background image optional – leave empty to use default Mabox wallpaper
+
+## Launch [betterlock-theming.AppImage] and get started creating the first betterlockscreen theme:
+
+```bash
+chmod +x betterlock-theming.AppImage
+./betterlock-theming.AppImage
+```
+
+---
+
+### Optional: To peek inside the AppImage:
+
+```bash
+./betterlock-theming.AppImage --appimage-extract
+cd squashfs-root
+ls
+```
+
+You’ll see all scripts, icons, and desktop files included.
 
 ---
 
@@ -184,32 +216,4 @@ mabox-logo-square.svg
 
 Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 
-# AppImage betterlock-theming
 
-* Run **directly** via AppImage – no installation needed
-* Cyberpunk, Vibrant, and Pastel themes
-* Edit login, verification, and warning text
-* Transparent or shadowed login boxes
-* Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
-
-	With Mabox Conky_LOGO_SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
-* Custom background image optional – leave empty to use default Mabox wallpaper
-
-## Launch [betterlock-theming.AppImage] and get started creating the first betterlockscreen theme:
-
-```bash
-chmod +x betterlock-theming.AppImage
-./betterlock-theming.AppImage
-```
-
----
-
-### Optional: To peek inside the AppImage:
-
-```bash
-./betterlock-theming.AppImage --appimage-extract
-cd squashfs-root
-ls
-```
-
-You’ll see all scripts, icons, and desktop files included.
