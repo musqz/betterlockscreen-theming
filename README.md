@@ -152,10 +152,11 @@ Categories=Settings;Utility;
 <img src="demo/themes.jpg" alt="themes" width="300"> <img src="demo/background.jpg" alt="BG" width="300">
 <img src="demo/help.jpg" alt="help" width="300">4
 
-## Extra info yad title image
+## Extra info yad title image Mabox way
 
 Mabox has a custom svg conky where one can choose between 3 variation with coloring options. 
-
+The svg's are created automatic when using conky svg coloring edit menu _(preview)_
+Path `$HOME/.icons/mabox-logo-*` is used to store the svg's.
 
 	In the scripts at the top, look for...
 	
