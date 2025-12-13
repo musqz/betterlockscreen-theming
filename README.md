@@ -148,4 +148,7 @@ Categories=Settings;Utility;
 
 ## Windows overview
 
-<img src="demo/style.jpg" alt="style" width="300"> <img src="demo/generate.jpg" alt="generate" width="300"> <img src="demo/themes.jpg" alt="themes" width="300"> <img src="demo/background.jpg" alt="BG" width="300">
+<img src="demo/style.jpg" alt="style" width="300"> <img src="demo/generate.jpg" alt="generate" width="300"> 
+<img src="demo/themes.jpg" alt="themes" width="300"> <img src="demo/background.jpg" alt="BG" width="300">
+<img src="demo/help.jpg" alt="help" width="300">
+
