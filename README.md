@@ -184,8 +184,9 @@ Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 * Cyberpunk, Vibrant, and Pastel themes
 * Edit login, verification, and warning text
 * Transparent or shadowed login boxes
-* Mabox logo icons included (`~/.icons/mabox-logo-3d.svg`)
-* Custom image optional – leave empty to use default Mabox wallpaper
+* Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
+	With Mabox Conky SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
+* Custom background image optional – leave empty to use default Mabox wallpaper
 
 ## Run It
 
