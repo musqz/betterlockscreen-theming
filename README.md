@@ -112,8 +112,8 @@ cd betterlockscreen-mabox-themes
 2. Install the scripts:
 
 ```
-chmod +x betterlock-*
-cp betterlock-* ~/bin/
+chmod +x bin/betterlock-*
+cp bin/betterlock-* ~/bin
 ```
 
 ## Usage
@@ -176,3 +176,32 @@ mabox-logo-square.svg
 
 Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 
+# AppImage
+
+* Run **directly** via AppImage – no installation needed
+* Cyberpunk, Vibrant, and Pastel themes
+* Edit login, verification, and warning text
+* Transparent or shadowed login boxes
+* Mabox logo icons included (`~/.icons/mabox-logo-3d.svg`)
+* Custom image optional – leave empty to use default Mabox wallpaper
+
+## Run It
+
+```bash
+chmod +x betterlock-menu.AppImage
+./betterlock-menu.AppImage
+```
+
+> Instantly customize your Mabox lockscreen with style and flair!
+
+---
+
+**Optional:** To peek inside the AppImage:
+
+```bash
+./betterlock-menu.AppImage --appimage-extract
+cd squashfs-root
+ls
+```
+
+You’ll see all scripts, icons, and desktop files included.
