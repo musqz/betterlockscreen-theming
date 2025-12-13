@@ -161,6 +161,11 @@ Mabox has a custom svg conky where one can choose between 3 variation with color
 	
 ```
 ICON="$HOME/.icons/mabox-logo-3d.svg"
+
+# all options
+mabox-logo-3d.svg
+mabox-logo-circle.svg
+mabox-logo-square.svg
 ```
 
 <img src="demo/mabox-logo.jpg" alt="loginbox" width="300">
