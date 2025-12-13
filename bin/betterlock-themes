@@ -6,7 +6,7 @@
 
 THEME_DIR="$HOME/.config/betterlockscreen/themes"
 OUTPUT_FILE="$HOME/.config/betterlockscreen/betterlockscreenrc"
-ICON="$HOME/.icons/mb-logo-3d.svg"
+ICON="$HOME/.icons/mabox-logo-3d.svg"
 
 
 case $LANG in
@@ -16,7 +16,7 @@ nl*)
 	TITLE2="Klaar"
 	TEXT2="Alle benodigde wijzigingen zijn toegepast.\n Gebruik <b>super + l</b> om het scherm te vergrendelen."
 	CHECK_LABEL="Achtergrond en kleuren nu bijwerken (langzamer)."
-	_SELECT_THEME="Selecteer Betterlockscreen-thema"
+	_SELECT_THEME="Selecteer thema"
 	_ERROR="Het geselecteerde thema kon niet worden gevonden!"
 	_OPTIONS="Betterlockscreen-opties"
 	_SELECT="Selecteer"
@@ -28,7 +28,7 @@ es*)
 	TITLE2="Listo"
 	TEXT2="Todos los cambios se han aplicado.\n Usa <b>super + l</b> para bloquear la pantalla."
 	CHECK_LABEL="Actualizar fondo e imagen ahora (más lento)."
-	_SELECT_THEME="Seleccionar tema de Betterlockscreen"
+	_SELECT_THEME="Seleccionar tema"
 	_ERROR="¡El tema seleccionado no se pudo encontrar!"
 	_OPTIONS="Opciones de Betterlockscreen"
 	_SELECT="Seleccionar"
@@ -40,7 +40,7 @@ pl*)
     TITLE2="Gotowe"
     TEXT2="Wszystkie zmiany zostały zastosowane.\n Użyj <b>super + l</b>, aby zablokować ekran."
     CHECK_LABEL="Zaktualizuj tło i kolory teraz (wolniejsze)"
-    _SELECT_THEME="Wybierz motyw Betterlockscreen"
+    _SELECT_THEME="Wybierz motyw"
     _ERROR="Nie można znaleźć wybranego motywu!"
     _OPTIONS="Opcje Betterlockscreen"
     _SELECT="Wybierz"
@@ -52,7 +52,7 @@ pl*)
     TITLE2="Done"
     TEXT2="All required changes have been applied.\n Use <b>super + l</b> to lock screen."
     CHECK_LABEL="Update image and loginbox background now (slower)."
-    _SELECT_THEME="Select Betterlockscreen Theme"
+    _SELECT_THEME="Select Theme"
     _ERROR="The selected theme could not be found!"
     _OPTIONS="Betterlockscreen Options"
     _SELECT="Select"
@@ -104,7 +104,6 @@ if [[ -f "$SELECTED_FILE" ]]; then
   cp "$SELECTED_FILE" "$OUTPUT_FILE"
   
   if [[ "$UPDATE_IMAGE" == "TRUE" ]]; then
-    # Gebruik opgegeven achtergrond als die er is, anders default wallpaper
     if [[ -n "$CUSTOM_BG" && -f "$CUSTOM_BG" ]]; then
         BG_PATH="$CUSTOM_BG"
     else

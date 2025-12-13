@@ -10,10 +10,6 @@ THEME_DIR="$WORK_DIR/themes"
 
 mkdir -p "$THEME_DIR"
 
-
-# === Set icon for yad window ===
-ICON="$HOME/.icons/mabox-logo-3d.svg"
-
 # === Transparanty ===
 get_alpha() {
   printf "%02x" "$1"
