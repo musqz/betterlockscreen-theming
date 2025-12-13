@@ -185,6 +185,7 @@ Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 * Edit login, verification, and warning text
 * Transparent or shadowed login boxes
 * Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
+
 	With Mabox Conky SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
 * Custom background image optional – leave empty to use default Mabox wallpaper
 
