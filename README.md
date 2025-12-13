@@ -18,7 +18,6 @@ It integrates with Mabox’s desktop wallpaper.
 
 Note: 
   * Need `betterlockscreen` installed and setup for Mabox.
-  * Use the `AppImage`, it is quick and clean. _(peek inside help included)_
 
 ---
 
