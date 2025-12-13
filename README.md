@@ -57,10 +57,12 @@ _(fade effect is from picom)_
 
 ### 2. Theme Picker (`betterlock-themes`)
 
-* Lists all saved themes in `~/.config/betterlockscreen/themes/`
+* Lists all saved themes in `~/.config/betterlockscreen/themes`
+	_themes dir will be created_
 * Activate a chosen theme
-* Optionally regenerates login box backgrounds, shadows, and transparency
-* Integrates with Mabox wallpaper handling
+* Optionally regenerates login box background, shadows, and transparency
+* Integrates with Mabox wallpaper handling _default)_
+* Or custom background image
 
 ---
 
@@ -105,8 +107,8 @@ When applying or previewing themes:
 1. Clone the repository:
 
 ```
-git clone https://github.com/<your-repo>/betterlockscreen-mabox-themes.git
-cd betterlockscreen-mabox-themes
+git clone https://gitlab.com/muzlabz/betterlockscreen-theme-creator
+cd betterlockscreen-theme-creator
 ```
 
 2. Install the scripts:
