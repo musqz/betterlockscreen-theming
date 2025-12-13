@@ -51,6 +51,8 @@ _(fade effect is from picom)_
 
 ![PASSWORD DEMO](demo/passwin.gif) 
 
+<img src="demo/passwin-01.gif" alt="loginbox" width="300">
+
 ![PASSWORDbox](demo/passwin-01.gif)
 
 ---
