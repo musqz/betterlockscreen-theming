@@ -171,3 +171,8 @@ mabox-logo-square.svg
 ```
 
 <img src="demo/mabox-logo.jpg" alt="loginbox" width="300">
+
+## Mabox lock screen settings menu (jg)
+
+Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
+
