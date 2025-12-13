@@ -94,9 +94,9 @@ When applying or previewing themes:
 ## Mabox Linux Integration
 
 * Changing the desktop wallpaper updates the source image for 
-  betterlockscreen background regeneration
+  betterlockscreen background regeneration (Default)
 
-* Or use custom image path via yad
+* Or use `custom image` as background. Leave empty for Mabox default.
 
 ---
 
