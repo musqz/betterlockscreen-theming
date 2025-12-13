@@ -192,11 +192,9 @@ chmod +x betterlock-theming.AppImage
 ./betterlock-theming.AppImage
 ```
 
-> Instantly customize your Mabox lockscreen with style and flair!
-
 ---
 
-**Optional:** To peek inside the AppImage:
+### Optional: To peek inside the AppImage:
 
 ```bash
 ./betterlock-theming.AppImage --appimage-extract
