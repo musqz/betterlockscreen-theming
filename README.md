@@ -10,8 +10,12 @@
 
 # Betterlockscreen Theme Toolkit for Mabox Linux (pl, es, en)
 
+
 This toolkit provides **user-friendly scripts** to generate, select, and apply custom Betterlockscreen themes on **Mabox Linux**.
 It integrates with Mabox’s desktop wallpaper.
+
+Note: 
+	Need `betterlockscreen` installed and setup for Mabox.
 
 ---
 
@@ -191,7 +195,7 @@ Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 	With Mabox Conky_LOGO_SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
 * Custom background image optional – leave empty to use default Mabox wallpaper
 
-## Run It
+## Launch [betterlock-theming.AppImage] and get started creating the first betterlockscreen theme:
 
 ```bash
 chmod +x betterlock-theming.AppImage
