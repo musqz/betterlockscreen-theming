@@ -129,7 +129,7 @@ When applying or previewing themes:
 * **Slow update (full regeneration):**
 
   * Updates colors, fonts, and text
-  * Rengenerate mabox wallpaper as background
+  * Rengenerate mabox wallpaper as background (default)
   * Regenerates login box shadows, and transparency
 
 ---
@@ -140,6 +140,8 @@ When applying or previewing themes:
   betterlockscreen background regeneration (Default)
 
 * Or use `custom image` as background. Leave empty for Mabox default.
+
+<img src="demo/background.jpg" alt="BG" width="500">
 
 ---
 
@@ -192,8 +194,7 @@ Categories=Settings;Utility;
 ## Windows overview
 
 <img src="demo/style.jpg" alt="style" width="300"> <img src="demo/generate.jpg" alt="generate" width="300"> 
-<img src="demo/themes.jpg" alt="themes" width="300"> <img src="demo/background.jpg" alt="BG" width="300">
-<img src="demo/help.jpg" alt="help" width="300">4
+<img src="demo/themes.jpg" alt="themes" width="300"> <img src="demo/help.jpg" alt="help" width="300">
 
 ## Extra info yad title image Mabox way
 
