@@ -19,7 +19,6 @@ It integrates with Mabox’s desktop wallpaper.
 
 ## Bash scripts involved
 
-_(do not rename scripts - they depend on each other)_
 
 1. **betterlock-theme-generator** – interactive color theme generator
 
