@@ -45,6 +45,10 @@ _(do not rename scripts - they depend on each other)_
 
 Saved themes can then be selected using **betterlock-themes**.
 
+### Login window demo's. 
+
+_(fade effect is from picom)_
+
 ![PASSWORD DEMO](demo/passwin.gif) 
 
 ![PASSWORDbox](demo/passwin-01.gif)
