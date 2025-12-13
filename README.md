@@ -32,7 +32,8 @@ Note:
 	With Mabox Conky_LOGO_SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
   * Custom background image optional – leave empty to use default Mabox wallpaper
 
-## Launch [betterlock-theming.AppImage] and get started creating the first betterlockscreen theme:
+## Launch `betterlock-theming.AppImage` 
+## And get started creating the first betterlockscreen theme:
 
 ```bash
 chmod +x betterlock-theming.AppImage
