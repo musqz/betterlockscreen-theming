@@ -11,7 +11,9 @@
 # Betterlockscreen Theme Toolkit for Mabox Linux (pl, es, en)
 
 
-This toolkit provides **user-friendly scripts** to generate, select, and apply custom Betterlockscreen themes on **Mabox Linux**.
+This toolkit provides **user-friendly scripts** to generate, select, and apply 
+custom Betterlockscreen Cyberpunk, Vibrant, and Pastel themes on **Mabox Linux**.
+Edit login, verification, and warning text.
 It integrates with Mabox’s desktop wallpaper.
 
 Note: 
@@ -23,14 +25,10 @@ Note:
 # Quick Start...
 
 ## .AppImage
-  * Run **directly** via AppImage – no installation needed
-  * Cyberpunk, Vibrant, and Pastel themes
-  * Edit login, verification, and warning text
-  * Transparent or shadowed login boxes
-  * Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
 
+  * Run **directly** via AppImage – no installation needed
+  * Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
 	With Mabox Conky_LOGO_SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
-  * Custom background image optional – leave empty to use default Mabox wallpaper
 
 ## Launch `betterlock-theming.AppImage` 
 ## And get started creating the first betterlockscreen theme:
