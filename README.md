@@ -176,7 +176,7 @@ mabox-logo-square.svg
 
 Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 
-# AppImage
+# AppImage betterlock-theming
 
 * Run **directly** via AppImage – no installation needed
 * Cyberpunk, Vibrant, and Pastel themes
@@ -188,8 +188,8 @@ Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 ## Run It
 
 ```bash
-chmod +x betterlock-menu.AppImage
-./betterlock-menu.AppImage
+chmod +x betterlock-theming.AppImage
+./betterlock-theming.AppImage
 ```
 
 > Instantly customize your Mabox lockscreen with style and flair!
@@ -199,7 +199,7 @@ chmod +x betterlock-menu.AppImage
 **Optional:** To peek inside the AppImage:
 
 ```bash
-./betterlock-menu.AppImage --appimage-extract
+./betterlock-theming.AppImage --appimage-extract
 cd squashfs-root
 ls
 ```
