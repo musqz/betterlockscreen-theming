@@ -61,7 +61,7 @@ _(fade effect is from picom)_
 	_themes dir will be created_
 * Activate a chosen theme
 * Optionally regenerates login box background, shadows, and transparency
-* Integrates with Mabox wallpaper handling _default)_
+* Integrates with Mabox wallpaper handling _default_
 * Or custom background image
 
 ---
