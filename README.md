@@ -27,7 +27,8 @@ Note:
 ## .AppImage
 
   * Run **directly** via AppImage – no installation needed
-  * Hardcoded Mabox logo icons using (~/.icons/mabox-logo-3d.svg)
+  * Hardcoded Mabox logo icons, using `~/.icons/mabox-logo-3d.svg`
+  
 	With Mabox Conky_LOGO_SVG `~/.icons/mabox-logo-3d.svg` can one edit e.a coloring transparancy...
 
 ## Launch `betterlock-theming.AppImage` 
