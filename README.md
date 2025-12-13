@@ -18,10 +18,11 @@ Note:
   * Need `betterlockscreen` installed and setup for Mabox.
   * Use the `AppImage`, it is quick and clean. _(peek inside help included)_
 
+---
+
 # Quick Start...
 
 ## .AppImage
-
   * Run **directly** via AppImage – no installation needed
   * Cyberpunk, Vibrant, and Pastel themes
   * Edit login, verification, and warning text
