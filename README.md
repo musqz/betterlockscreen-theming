@@ -139,7 +139,7 @@ When applying or previewing themes:
 * Changing the desktop wallpaper updates the source image for 
   betterlockscreen background regeneration (Default)
 
-* Or use `Custom Background Path`. Leave empty for Mabox default.
+* Or use `Custom Background Path`. _Leave empty to use current wallpaper._
 
 <img src="demo/background.jpg" alt="BG" width="500">
 
