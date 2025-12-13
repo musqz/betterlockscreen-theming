@@ -29,8 +29,29 @@ case "$LANG_SHORT" in
         TXT_OK="Sluiten"
         TXT_CHOOSE_THEME="Kies een bestaand thema:"
         TXT_NO_THEMES="Geen thema's gevonden in $THEMES_DIR"
-        TXT_HELP_TEXT="Dit script laat je bestaande Betterlockscreen-thema’s selecteren of een nieuw thema genereren met behulp van het YAD-menu.
-Thema’s worden opgeslagen in:\n<b>$THEMES_DIR</b>\n\nGebruik het generator-script om een nieuw thema aan te maken of een bestaand thema opnieuw te genereren."
+        TXT_HELP_TEXT="<b>[TRAAG PROCES] betterlockscreen -u [afbeeldingspad]:</b> \n 
+	Deze opdracht werkt de vergrendelschermafbeelding bij, 
+	inclusief het toepassen van wijzigingen voor loginbox-achtergrond en schaduw. \n
+<b>[SNEL PROCES] betterlockscreen -l:</b> \n
+	Bekijk onmiddellijk nieuwe wijzigingen, zoals het lettertype. 
+	Loginbox-achtergrond en schaduw zijn uitgesloten. \n"
+        ;;
+    pl)
+        TITLE="Menedżer Motywów Betterlockscreen"
+        TXT_CHOOSE_ACTION="Wybierz akcję:"
+        TXT_SELECT_THEME="Wybierz Motyw"
+        TXT_REGENERATE="Generuj Motyw"
+        TXT_HELP="Pomoc"
+        TXT_EXIT="Zakończ"
+        TXT_OK="Zamknij"
+        TXT_CHOOSE_THEME="Wybierz istniejący motyw:"
+        TXT_NO_THEMES="Nie znaleziono motywów w $THEMES_DIR"
+        TXT_HELP_TEXT="<b>[WOLNY PROCES] betterlockscreen -u [ścieżka_do_obrazu]:</b> \n 
+	Ta komenda aktualizuje obraz ekranu blokady, 
+	w tym zastosowanie zmian dla tła i cienia loginboxa. \n
+<b>[SZYBKI PROCES] betterlockscreen -l:</b> \n
+	Natychmiastowe wyświetlenie nowych zmian, takich jak czcionka. 
+	Z wyłączeniem tła i cienia loginboxa. \n"
         ;;
     es)
         TITLE="Betterlockscreen Gestor de Temas"
@@ -42,8 +63,12 @@ Thema’s worden opgeslagen in:\n<b>$THEMES_DIR</b>\n\nGebruik het generator-scr
         TXT_OK="Cerrar"
         TXT_CHOOSE_THEME="Selecciona un tema existente:"
         TXT_NO_THEMES="No se encontraron temas en $THEMES_DIR"
-        TXT_HELP_TEXT="Este script te permite seleccionar temas existentes de Betterlockscreen o generar uno nuevo mediante un menú YAD.
-Los temas se guardan en:\n<b>$THEMES_DIR</b>\n\nUtiliza el script de generación para crear un nuevo tema o regenerar uno existente."
+        TXT_HELP_TEXT="<b>[PROCESO LENTO] betterlockscreen -u [ruta_de_imagen]:</b> \n 
+	Este comando actualiza la imagen de la pantalla de bloqueo, 
+	incluyendo la aplicación de cambios en el fondo y la sombra del loginbox. \n
+<b>[PROCESO RÁPIDO] betterlockscreen -l:</b> \n
+	Visualiza inmediatamente los nuevos cambios, como la fuente. 
+	Se excluyen el fondo y la sombra del loginbox. \n"
         ;;
     *)
         TITLE="Betterlockscreen Theme Manager"
@@ -56,11 +81,11 @@ Los temas se guardan en:\n<b>$THEMES_DIR</b>\n\nUtiliza el script de generación
         TXT_CHOOSE_THEME="Choose an existing theme:"
         TXT_NO_THEMES="No themes found in $THEMES_DIR"
         TXT_HELP_TEXT="<b>[SLOW PROCESS]  betterlockscreen -u [image_path]:</b> \n 
-This command updates your lockscreen image, 
-including applaying changes for <b><i>loginbox background and shadow.</i></b> \n
+	This command updates your lockscreen image, 
+	including applaying changes for loginbox background and shadow. \n
 <b>[QUICK PROCESS] betterlockscreen -l:</b> \n
-See instantly new changes, like font. 
-<b><i>Excluded loginbox background and shadow.</i></b> \n"
+	See instantly new changes, like font. 
+	Excluded loginbox background and shadow. \n"
 
         ;;
 esac
