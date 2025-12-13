@@ -11,10 +11,10 @@
 # Betterlockscreen Theme Toolkit for Mabox Linux (pl, es, en)
 
 
-This toolkit provides **user-friendly scripts** to generate, select, and apply 
-custom Betterlockscreen Cyberpunk, Vibrant, and Pastel themes on **Mabox Linux**.
-Edit login, verification, and warning text.
-It integrates with Mabox’s desktop wallpaper.
+This toolkit offers intuitive scripts for creating, selecting, 
+and applying custom Betterlockscreen themes—including Cyberpunk, 
+Vibrant, and Pastel styles—on Mabox Linux. It allows easy customization of login, 
+verification, and warning messages, and seamlessly integrates with the Mabox desktop wallpaper system.
 
 Note: 
   * Need `betterlockscreen` installed and setup for Mabox.
