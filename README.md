@@ -51,7 +51,7 @@ Saved themes can then be selected using **betterlock-themes**.
 _(fade effect is from picom)_
 
 
-<img src="demo/passwin.gif" alt="loginbox" width="300"> <img src="demo/passwin-01.gif" alt="loginbox" width="300"> <img src="demo/passwin-02.gif" alt="loginbox" width="300">
+<img src="demo/passwin.gif" alt="loginbox" width="300"> <img src="demo/passwin-01.gif" alt="loginbox" width="300"> <img src="demo/passwin-02.gif" alt="loginbox" width="300"> <img src="demo/passwin-03.gif" alt="loginbox" width="300">
 
 
 
