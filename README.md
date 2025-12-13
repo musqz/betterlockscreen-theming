@@ -45,7 +45,9 @@ _(do not rename scripts - they depend on each other)_
 
 Saved themes can then be selected using **betterlock-themes**.
 
-![PASSWORD WINDOW DEMO](demo/passwin.gif)
+![PASSWORD DEMO](demo/passwin.gif) 
+
+![PASSWORDbox](demo/passwin-01.gif)
 
 ---
 
