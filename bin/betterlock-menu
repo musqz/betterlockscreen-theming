@@ -5,8 +5,20 @@ CONFIG_DIR="$HOME/.config/betterlockscreen"
 THEMES_DIR="$CONFIG_DIR/themes"
 ICON="$HOME/.icons/mabox-logo-3d.svg"
 
-# Detecteer taal
+# Detecteer language
 LANG_SHORT="${LANG:0:2}"
+
+[ -f "$CONFIG_DIR/config" ] && . "$CONFIG_DIR/config"
+
+# Dependency check
+command -v yad >/dev/null 2>&1 || {
+    echo "Error: yad is not installed." >&2
+    exit 1
+}
+
+command -v betterlockscreen >/dev/null 2>&1 || {
+    echo "Warning: betterlockscreen not found. Some actions won't work." >&2
+
 
 case "$LANG_SHORT" in
     nl)
