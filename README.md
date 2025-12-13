@@ -15,7 +15,7 @@ It integrates with Mabox’s desktop wallpaper.
 
 ---
 
-![BETTERLOCKSCREEN THEME GENERATION DEMO](demo/demo.mp4)
+![BETTERLOCKSCREEN THEME GENERATION DEMO](https://gitlab.com/muzlabz/betterlockscreen-theme-creator/-/blob/main/demo/demo.mp4?ref_type=heads)
 
 ## Bash scripts involved
 
