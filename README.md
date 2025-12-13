@@ -23,12 +23,11 @@ Note:
 
 # Quick Start...
 
-## .AppImage
+## Launch betterlock-theming.AppImage 
 
   * Run **directly** via AppImage – no installation needed
 
-## Launch `betterlock-theming.AppImage` 
-## And get started creating the first betterlockscreen theme:
+### And get started creating the first betterlockscreen theme:
 
 ```bash
 chmod +x betterlock-theming.AppImage
