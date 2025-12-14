@@ -8,7 +8,7 @@
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝  Community.
 ```
 
-# Betterlockscreen Theme Toolkit for Mabox Linux (pl, es, en)
+# Betterlockscreen Theme Toolkit for Mabox Linux (pl, es, nl, en)
 
 
 This toolkit offers intuitive scripts for creating, selecting, 
@@ -47,6 +47,8 @@ ls
 You’ll see all scripts, icons, and desktop files included.
 
 ---
+
+_NOTE: The video need an update. Now we can add custom background during creating process._
 
 ![BETTERLOCKSCREEN THEME GENERATION DEMO](https://gitlab.com/muzlabz/betterlockscreen-theme-creator/-/blob/main/demo/demo.mp4?ref_type=heads)
 
