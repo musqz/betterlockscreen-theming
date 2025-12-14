@@ -75,7 +75,7 @@ case "$LANG_SHORT" in
         TXT_CHOOSE_ACTION="Choose an action:"
         TXT_SELECT_THEME="Select Theme"
         TXT_REGENERATE="Generate Theme"
-        TXT_HELP="Tips and Tricks"
+        TXT_HELP="Help"
         TXT_EXIT="Exit"
         TXT_OK="Close"
         TXT_CHOOSE_THEME="Choose an existing theme:"
@@ -92,6 +92,26 @@ esac
 
 # 📘 Functies
 
+get_header_image() {
+    local cache="$HOME/.cache/betterlockscreen/current/wall_resize.png"
+    local out="/tmp/yad-header.png"
+
+    local geom=$(xrandr | awk '/ primary / {print $4}' | cut -d+ -f1)
+    local w=$(echo $geom | cut -dx -f1)
+    local h=$(echo $geom | cut -dx -f2)
+
+    magick "$cache" -crop "${w}x${h}+0+0" +repage \
+        -resize 350x120^ \
+        -gravity center -extent 350x155 \
+        "$out"
+
+    echo "$out"
+}
+
+HEADER_IMG=$(get_header_image)
+
+
+        
 show_help() {
     yad   --center --title="$TXT_HELP" \
       --window-icon=$ICON \
@@ -99,14 +119,16 @@ show_help() {
 }
 
 show_main_menu() {
-    local choice
-    choice=$(yad --width=350 --height=100 --center --title="$TITLE" \
-        --window-icon=$ICON \
+    yad --width=350 --height=220 --center \
+        --title="$TITLE" \
+        --window-icon="$ICON" \
+        --image="$HEADER_IMG" \
         --text="<b>$TITLE</b>\n\n$TXT_CHOOSE_ACTION" \
+        --text-align=center \
         --button="🎨 $TXT_SELECT_THEME:1" \
         --button="🛠️ $TXT_REGENERATE:2" \
         --button="🛈 $TXT_HELP:3" \
-        --button="🚪 $TXT_EXIT:0")
+        --button="🚪 $TXT_EXIT:0"
 
     case $? in
         1) betterlock-themes ; betterlock-menu ;;
