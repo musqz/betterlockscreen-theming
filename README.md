@@ -108,6 +108,7 @@ _(fade effect is from picom)_
 
 * Provides the main menu. a simple GUI interface (yad)
 * Common actions:
+* Betterlockscreen background shown in header _(cache)_
 
 ![Main-menu](demo/menu.jpg)
   
