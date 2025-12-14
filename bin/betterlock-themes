@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash 
 
 # Made with and for Mabox linux systems.
 # Betterlock-Themes - Theme Chooser + Optional Image Cache Updater
@@ -15,7 +15,7 @@ nl*)
 	TEXT="\nEven geduld...\ndit kan een paar seconden duren..."
 	TITLE2="Klaar"
 	TEXT2="Alle benodigde wijzigingen zijn toegepast.\n Gebruik <b>super + l</b> om het scherm te vergrendelen."
-	CHECK_LABEL="Achtergrond en kleuren nu bijwerken (langzamer)."
+	CHECK_LABEL=" Vink aan voor volledige langzame definitieve update \n Laat uitgevinkt voor snelle preview (alleen lettertypen/kleuren)."
 	_SELECT_THEME="Selecteer thema"
 	_ERROR="Het geselecteerde thema kon niet worden gevonden!"
 	_OPTIONS="Betterlockscreen-opties"
@@ -27,7 +27,7 @@ es*)
 	TEXT="\nPor favor espera...\nesto puede tardar unos segundos..."
 	TITLE2="Listo"
 	TEXT2="Todos los cambios se han aplicado.\n Usa <b>super + l</b> para bloquear la pantalla."
-	CHECK_LABEL="Actualizar fondo e imagen ahora (más lento)."
+	CHECK_LABEL=" Marca la casilla para actualización final lenta completa \n Déjalo sin marcar para vista previa rápida (solo fuentes/colores)."
 	_SELECT_THEME="Seleccionar tema"
 	_ERROR="¡El tema seleccionado no se pudo encontrar!"
 	_OPTIONS="Opciones de Betterlockscreen"
@@ -39,7 +39,7 @@ pl*)
     TEXT="\nCierpliwości...\nto może chwilkę potrwać..."
     TITLE2="Gotowe"
     TEXT2="Wszystkie zmiany zostały zastosowane.\n Użyj <b>super + l</b>, aby zablokować ekran."
-    CHECK_LABEL="Zaktualizuj tło i kolory teraz (wolniejsze)"
+    CHECK_LABEL=" Zaznacz, aby wykonać pełną, wolną aktualizację końcową \n Pozostaw niezaznaczone, aby uzyskać szybki podgląd (tylko czcionki/kolory)."
     _SELECT_THEME="Wybierz motyw"
     _ERROR="Nie można znaleźć wybranego motywu!"
     _OPTIONS="Opcje Betterlockscreen"
@@ -51,7 +51,7 @@ pl*)
     TEXT="\nPlease wait...\nthis might take few seconds..."
     TITLE2="Done"
     TEXT2="All required changes have been applied.\n Use <b>super + l</b> to lock screen."
-    CHECK_LABEL="Update image and loginbox background now (slower)."
+    CHECK_LABEL=" Check the box for full slow final update \n leave unchecked for quick preview (fonts/colors only)." 
     _SELECT_THEME="Select Theme"
     _ERROR="The selected theme could not be found!"
     _OPTIONS="Betterlockscreen Options"
@@ -80,6 +80,11 @@ SELECTED=$(yad --list \
 # Thema pad opzoeken
 SELECTED_FILE="$THEME_DIR/$SELECTED.theme"
 
+save_name() {
+	echo "$THEME_DIR/$SELECTED.theme" > /tmp/betterlock-theme	
+}
+
+
 # Vraag of gebruiker ook -u wil doen en eventueel achtergrondpad
 DO_UPDATE=$(yad --form \
   --window-icon=$ICON \
@@ -98,6 +103,9 @@ DO_UPDATE=$(yad --form \
 # Haal waarde uit checkbox en textfield
 UPDATE_IMAGE=$(echo "$DO_UPDATE" | cut -d"|" -f1)
 CUSTOM_BG=$(echo "$DO_UPDATE" | cut -d"|" -f2)
+
+# Save theme name to tmp file
+save_name
 
 # Thema controleren en wegschrijven
 if [[ -f "$SELECTED_FILE" ]]; then

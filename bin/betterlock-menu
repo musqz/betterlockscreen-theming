@@ -5,6 +5,8 @@ CONFIG_DIR="$HOME/.config/betterlockscreen"
 THEMES_DIR="$CONFIG_DIR/themes"
 ICON="$HOME/.icons/mabox-logo-3d.svg"
 
+ACTIVE_THEME="$(cat /tmp/betterlock-theme | sed 's/.*\///; s/\.[^.]*$//')"
+
 # Detecteer language
 LANG_SHORT="${LANG:0:2}"
 
@@ -121,7 +123,7 @@ Launch GUI to generate themes, choose themes, lock the screen, or open Mabox Bet
 <b>Mabox hotkeys:</b>\n
   W-A-l : Open Betterlockscreen settings\n
   W-l   : Lock screen instantly\n"
-
+        TXT_ACTIVE_THEME="<b>Active theme: </b>"
         ;;
 esac
 
@@ -158,7 +160,7 @@ show_main_menu() {
         --title="$TITLE" \
         --window-icon="$ICON" \
         --image="$HEADER_IMG" \
-        --text="<b>$TITLE</b>\n\n$TXT_CHOOSE_ACTION" \
+        --text="<b>$TITLE</b>\n\n$TXT_ACTIVE_THEME $ACTIVE_THEME\n\n\n$TXT_CHOOSE_ACTION" \
         --text-align=center \
         --button="🎨 $TXT_SELECT_THEME:1" \
         --button="🛠️ $TXT_REGENERATE:2" \
