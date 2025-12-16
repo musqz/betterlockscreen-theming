@@ -5,7 +5,7 @@ CONFIG_DIR="$HOME/.config/betterlockscreen"
 THEMES_DIR="$CONFIG_DIR/themes"
 ICON="$HOME/.icons/mabox-logo-3d.svg"
 
-ACTIVE_THEME="$(cat /tmp/betterlock-theme | sed 's/.*\///; s/\.[^.]*$//')"
+ACTIVE_THEME="$(cat ~/.cache/betterlockscreen/.betterlock-theme.txt | sed 's/.*\///; s/\.[^.]*$//')"
 
 # Detecteer language
 LANG_SHORT="${LANG:0:2}"

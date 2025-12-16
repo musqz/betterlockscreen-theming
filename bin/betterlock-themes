@@ -81,7 +81,7 @@ SELECTED=$(yad --list \
 SELECTED_FILE="$THEME_DIR/$SELECTED.theme"
 
 save_name() {
-	echo "$THEME_DIR/$SELECTED.theme" > /tmp/betterlock-theme	
+	echo "$THEME_DIR/$SELECTED.theme" > ~/.cache/betterlockscreen/.betterlock-theme.txt	
 }
 
 
