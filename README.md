@@ -50,9 +50,7 @@ You’ll see all scripts, icons, and desktop files included.
 
 _NOTE: The video need an update. We can add custom background during creating process with latest release._
 
-![BETTERLOCKSCREEN THEME GENERATION DEMO](<img width="633" height="260" alt="Image" src="https://github.com/user-attachments/assets/d3debb12-82cd-460e-87ae-ccdbfe9b1b40" />)
-
-<img src="demo/demo.jpg" alt="demo" width="720">
+<img width="633" height="260" alt="Image" src="https://github.com/user-attachments/assets/d3debb12-82cd-460e-87ae-ccdbfe9b1b40" />
 
 # Manual Instalation Steps
 
