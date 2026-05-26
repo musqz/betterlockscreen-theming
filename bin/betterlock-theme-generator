@@ -5,6 +5,7 @@
 # This script works together with the `betterlock-themes` theme picker to select one of the generated themes.
 # Create a .desktop for quick access
 
+ICON="system-lock-screen"
 WORK_DIR="$HOME/.config/betterlockscreen"
 THEME_DIR="$WORK_DIR/themes"
 

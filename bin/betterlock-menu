@@ -3,7 +3,7 @@
 # Configuratie
 CONFIG_DIR="$HOME/.config/betterlockscreen"
 THEMES_DIR="$CONFIG_DIR/themes"
-ICON="$HOME/.icons/mabox-logo-3d.svg"
+ICON="system-lock-screen"
 
 ACTIVE_THEME="$(cat ~/.cache/betterlockscreen/.betterlock-theme.txt | sed 's/.*\///; s/\.[^.]*$//')"
 
