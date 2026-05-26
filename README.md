@@ -23,15 +23,19 @@ Note:
 
 # Quick Start...
 
-## Launch ./`betterlock-theming.AppImage` 
+## Download the AppImage
+
+[![GitHub Release](https://img.shields.io/github/v/release/musqz/betterlockscreen-theming)](https://github.com/musqz/betterlockscreen-theming/releases/latest)
+
+Download the latest `betterlock-theming-*.AppImage` from the [Releases page](https://github.com/musqz/betterlockscreen-theming/releases/latest).
+
+## Launch `betterlock-theming.AppImage`
 
   * Run **directly** via AppImage – no installation needed
 
-#### Get started creating your first betterlockscreen theme:
-
 ```bash
-chmod +x betterlock-theming.AppImage
-./betterlock-theming.AppImage
+chmod +x betterlock-theming-*.AppImage
+./betterlock-theming-*.AppImage
 ```
 
 ---
@@ -39,7 +43,7 @@ chmod +x betterlock-theming.AppImage
 #### Optional: To peek inside the AppImage:
 
 ```bash
-./betterlock-theming.AppImage --appimage-extract
+./betterlock-theming-*.AppImage --appimage-extract
 cd squashfs-root
 ls
 ```
