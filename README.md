@@ -8,16 +8,14 @@
 ╚═╝     ╚═╝╚═╝  ╚═╝╚═════╝  ╚═════╝ ╚═╝  ╚═╝  Community.
 ```
 
-# Betterlockscreen Theme Toolkit for Mabox Linux (pl, es, nl, en)
+# Betterlockscreen Theme Toolkit (pl, es, nl, en)
 
+This toolkit offers intuitive scripts for creating, selecting,
+and applying custom Betterlockscreen themes—including Cyberpunk,
+Vibrant, and Pastel styles. It allows easy customization of login,
+verification, and warning messages.
 
-This toolkit offers intuitive scripts for creating, selecting, 
-and applying custom Betterlockscreen themes—including Cyberpunk, 
-Vibrant, and Pastel styles—on Mabox Linux. It allows easy customization of login, 
-verification, and warning messages, and seamlessly integrates with the Mabox desktop wallpaper system.
-
-Note: 
-  * Need `betterlockscreen` installed and setup for Mabox.
+> **Mabox Linux users:** see [README-MABOX.md](README-MABOX.md) for wallpaper integration, icon setup, and hotkeys.
 
 ---
 
@@ -132,17 +130,6 @@ When applying or previewing themes:
 
 ---
 
-## Mabox Linux Integration
-
-* Changing the desktop wallpaper updates the source image for 
-  betterlockscreen background regeneration (Default)
-
-* Or use `Custom Background Path`. _Leave empty to use current wallpaper._
-
-<img src="demo/background.jpg" alt="BG" width="500">
-
----
-
 ## Installation
 
 1. Clone the repository:
@@ -193,29 +180,5 @@ Categories=Settings;Utility;
 
 <img src="demo/style.jpg" alt="style" width="300"> <img src="demo/generate.jpg" alt="generate" width="300"> 
 <img src="demo/themes.jpg" alt="themes" width="300"> <img src="demo/help.jpg" alt="help" width="300">
-
-## Extra info yad title image Mabox way
-
-Mabox has a LOGO SVG Conky `Mabox_logo_SVG_mbcolor.conkyrc` where one can choose between 3 variation with coloring options.
-The svg's are created automatic when using conky svg coloring edit menu _(preview)_.
-
-Path `$HOME/.icons/mabox-logo-*` is used to store the svg's.
-
-	In the scripts at the top, look for...
-	
-```
-ICON="$HOME/.icons/mabox-logo-3d.svg"
-
-# all options
-mabox-logo-3d.svg
-mabox-logo-circle.svg
-mabox-logo-square.svg
-```
-
-<img src="demo/mabox-logo.jpg" alt="loginbox" width="300">
-
-## Mabox lock screen settings menu (jg)
-
-Hotkey `W-A-l` show Mabox betterlockscreen settings for blur, etc...
 
 
