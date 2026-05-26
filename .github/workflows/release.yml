@@ -28,7 +28,7 @@ jobs:
 
       - name: Prepare AppDir
         run: |
-          mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
+          mkdir -p AppDir/usr/bin AppDir/usr/share/icons/hicolor/256x256/apps
           cp bin/betterlock-menu AppDir/usr/bin/
           cp bin/betterlock-theme-generator AppDir/usr/bin/
           cp bin/betterlock-themes AppDir/usr/bin/
