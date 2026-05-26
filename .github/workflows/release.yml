@@ -1,0 +1,49 @@
+name: Release AppImage
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Prepare AppDir
+        run: |
+          mkdir -p AppDir/usr/share/icons/hicolor/256x256/apps
+          cp bin/betterlock-menu AppDir/usr/bin/
+          cp bin/betterlock-theme-generator AppDir/usr/bin/
+          cp bin/betterlock-themes AppDir/usr/bin/
+          chmod +x AppDir/usr/bin/*
+          convert demo/mabox-logo.jpg -resize 256x256 AppDir/betterlock-theming.png
+          cp AppDir/betterlock-theming.png \
+            AppDir/usr/share/icons/hicolor/256x256/apps/betterlock-theming.png
+
+      - name: Download appimagetool
+        run: |
+          wget -q -O appimagetool \
+            https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage
+          chmod +x appimagetool
+
+      - name: Build AppImage
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: 1
+          VERSION: ${{ github.ref_name }}
+        run: ARCH=x86_64 ./appimagetool AppDir betterlock-theming-${VERSION}-x86_64.AppImage
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: betterlock-theming-*.AppImage
+          generate_release_notes: true
