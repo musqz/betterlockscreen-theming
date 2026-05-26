@@ -6,6 +6,11 @@ on:
       - 'v*'
   release:
     types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag to build (e.g. v1.0.0)'
+        required: true
 
 permissions:
   contents: write
@@ -41,11 +46,12 @@ jobs:
       - name: Build AppImage
         env:
           APPIMAGE_EXTRACT_AND_RUN: 1
-          VERSION: ${{ github.ref_name }}
+          VERSION: ${{ inputs.tag || github.ref_name }}
         run: ARCH=x86_64 ./appimagetool AppDir betterlock-theming-${VERSION}-x86_64.AppImage
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ inputs.tag || github.ref_name }}
           files: betterlock-theming-*.AppImage
           generate_release_notes: true
