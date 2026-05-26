@@ -1,26 +1,12 @@
-#!/usr/bin/env bash 
+#!/usr/bin/env bash
 
-# Configuratie
-CONFIG_DIR="$HOME/.config/betterlockscreen"
-THEMES_DIR="$CONFIG_DIR/themes"
 ICON="system-lock-screen"
+CACHE_FILE="$HOME/.cache/betterlockscreen/.betterlock-theme.txt"
 
-ACTIVE_THEME="$(cat ~/.cache/betterlockscreen/.betterlock-theme.txt | sed 's/.*\///; s/\.[^.]*$//')"
+command -v yad >/dev/null 2>&1 || { echo "Error: yad is not installed." >&2; exit 1; }
+command -v betterlockscreen >/dev/null 2>&1 || echo "Warning: betterlockscreen not found. Some actions won't work." >&2
 
-# Detecteer language
-LANG_SHORT="${LANG:0:2}"
-
-# Dependency check
-command -v yad >/dev/null 2>&1 || {
-    echo "Error: yad is not installed." >&2
-    exit 1
-}
-
-command -v betterlockscreen >/dev/null 2>&1 || {
-    echo "Warning: betterlockscreen not found. Some actions won't work." >&2
-}
-
-case "$LANG_SHORT" in
+case "${LANG:0:2}" in
     nl)
         TITLE="Betterlockscreen Thema Manager"
         TXT_CHOOSE_ACTION="Kies een actie:"
@@ -29,23 +15,18 @@ case "$LANG_SHORT" in
         TXT_HELP="Help"
         TXT_EXIT="Afsluiten"
         TXT_OK="Sluiten"
-        TXT_CHOOSE_THEME="Kies een bestaand thema:"
-        TXT_NO_THEMES="Geen thema's gevonden in $THEMES_DIR"
-        TXT_HELP_TEXT_NL="<b>[LANGZAAM PROCES] betterlockscreen -u [afbeeldingspad]:</b>\n
+        TXT_ACTIVE_THEME="<b>Actief thema: </b>"
+        TXT_HELP_TEXT="<b>[LANGZAAM PROCES] betterlockscreen -u [afbeeldingspad]:</b>\n
 Werk je vergrendelingsscherm bij, inclusief achtergrond en schaduw van het inlogvak.\n
-Optioneel: specificeer een aangepaste afbeelding; laat leeg om de standaard Mabox-achtergrond te gebruiken.\n\n
+Optioneel: specificeer een aangepaste afbeelding; laat leeg om de huidige achtergrond te gebruiken.\n\n
 <b>[SNEL PROCES] betterlockscreen -l:</b>\n
-Bekijk direct nieuwe wijzigingen (lettertypen, kleuren) zonder achtergrond of schaduw van het inlogvak te vernieuwen.\n\n
+Bekijk direct nieuwe wijzigingen (lettertypen, kleuren) zonder achtergrond of schaduw te vernieuwen.\n\n
 <b>betterlock-theme-generator:</b>\n
-Maak interactief nieuwe kleurenthema’s. Kies stijl, lettertype, welkomsttekst en bekijk het inlogvak voordat je opslaat.\n\n
+Maak interactief nieuwe kleurenthema's. Kies stijl, lettertype en welkomsttekst voordat je opslaat.\n\n
 <b>betterlock-themes:</b>\n
-Selecteer en activeer opgeslagen thema’s in ~/.config/betterlockscreen/themes/. Wordt direct toegepast of met volledige achtergrondvernieuwing.\n\n
+Selecteer en activeer opgeslagen thema's in ~/.config/betterlockscreen/themes/.\n\n
 <b>betterlock-menu:</b>\n
-Start de GUI om thema’s te genereren, thema’s te kiezen, het scherm te vergrendelen of Mabox Betterlockscreen-instellingen te openen.\n\n
-<b>Mabox sneltoetsen:</b>\n
-  W-A-l : Open Betterlockscreen-instellingen\n
-  W-l   : Vergrendel het scherm direct\n"
-
+Start de GUI om thema's te genereren, te kiezen of het scherm te vergrendelen.\n"
         ;;
     pl)
         TITLE="Menedżer Motywów Betterlockscreen"
@@ -55,23 +36,18 @@ Start de GUI om thema’s te genereren, thema’s te kiezen, het scherm te vergr
         TXT_HELP="Pomoc"
         TXT_EXIT="Zakończ"
         TXT_OK="Zamknij"
-        TXT_CHOOSE_THEME="Wybierz istniejący motyw:"
-        TXT_NO_THEMES="Nie znaleziono motywów w $THEMES_DIR"
-        TXT_HELP_TEXT_PL="<b>[WOLNY PROCES] betterlockscreen -u [ścieżka_obrazu]:</b>\n
+        TXT_ACTIVE_THEME="<b>Aktywny motyw: </b>"
+        TXT_HELP_TEXT="<b>[WOLNY PROCES] betterlockscreen -u [ścieżka_obrazu]:</b>\n
 Aktualizuje ekran blokady, w tym tło i cień okna logowania.\n
-Opcjonalnie podaj własny obraz; pozostaw puste, aby użyć domyślnej tapety Mabox.\n\n
+Opcjonalnie podaj własny obraz; pozostaw puste, aby użyć bieżącej tapety.\n\n
 <b>[SZYBKI PROCES] betterlockscreen -l:</b>\n
-Natychmiast pokaż nowe zmiany (czcionki, kolory) bez regenerowania tła lub cienia okna logowania.\n\n
+Natychmiast pokaż nowe zmiany (czcionki, kolory) bez regenerowania tła lub cienia.\n\n
 <b>betterlock-theme-generator:</b>\n
-Interaktywnie twórz nowe motywy kolorystyczne. Wybierz styl, czcionkę, tekst powitalny i podgląd okna logowania przed zapisaniem.\n\n
+Interaktywnie twórz nowe motywy kolorystyczne. Wybierz styl, czcionkę i tekst przed zapisaniem.\n\n
 <b>betterlock-themes:</b>\n
-Wybierz i zastosuj zapisane motywy z ~/.config/betterlockscreen/themes/. Zastosowanie natychmiastowe lub z pełną regeneracją tła.\n\n
+Wybierz i zastosuj zapisane motywy z ~/.config/betterlockscreen/themes/.\n\n
 <b>betterlock-menu:</b>\n
-Uruchom GUI, aby generować motywy, wybierać motywy, blokować ekran lub otworzyć ustawienia Betterlockscreen Mabox.\n\n
-<b>Skróty klawiszowe Mabox:</b>\n
-  W-A-l : Otwórz ustawienia Betterlockscreen\n
-  W-l   : Natychmiast zablokuj ekran\n"
-
+Uruchom GUI, aby generować motywy, wybierać motywy lub blokować ekran.\n"
         ;;
     es)
         TITLE="Betterlockscreen Gestor de Temas"
@@ -81,23 +57,18 @@ Uruchom GUI, aby generować motywy, wybierać motywy, blokować ekran lub otworz
         TXT_HELP="Ayuda"
         TXT_EXIT="Salir"
         TXT_OK="Cerrar"
-        TXT_CHOOSE_THEME="Selecciona un tema existente:"
-        TXT_NO_THEMES="No se encontraron temas en $THEMES_DIR"
-        TXT_HELP_TEXT_ES="<b>[PROCESO LENTO] betterlockscreen -u [ruta_imagen]:</b>\n
-Actualiza la imagen de la pantalla de bloqueo, incluyendo el fondo y la sombra del cuadro de inicio de sesión.\n
-Opcionalmente, especifica una imagen personalizada; deja vacío para usar el fondo de pantalla de Mabox.\n\n
+        TXT_ACTIVE_THEME="<b>Tema activo: </b>"
+        TXT_HELP_TEXT="<b>[PROCESO LENTO] betterlockscreen -u [ruta_imagen]:</b>\n
+Actualiza la pantalla de bloqueo, incluyendo el fondo y la sombra del cuadro de inicio.\n
+Especifica una imagen personalizada; deja vacío para usar el fondo de pantalla actual.\n\n
 <b>[PROCESO RÁPIDO] betterlockscreen -l:</b>\n
-Muestra instantáneamente los cambios nuevos (fuentes, colores) sin regenerar el fondo ni la sombra del cuadro de inicio de sesión.\n\n
+Muestra instantáneamente los cambios nuevos (fuentes, colores) sin regenerar el fondo.\n\n
 <b>betterlock-theme-generator:</b>\n
-Crea interactivamente nuevos temas de color. Elige estilo, fuente, texto de bienvenida y vista previa del cuadro de inicio antes de guardar.\n\n
+Crea interactivamente nuevos temas de color. Elige estilo, fuente y texto antes de guardar.\n\n
 <b>betterlock-themes:</b>\n
-Selecciona y aplica los temas guardados en ~/.config/betterlockscreen/themes/. Se aplica al instante o con regeneración completa del fondo de pantalla.\n\n
+Selecciona y aplica temas guardados en ~/.config/betterlockscreen/themes/.\n\n
 <b>betterlock-menu:</b>\n
-Lanza la GUI para generar temas, elegir temas, bloquear la pantalla o abrir la configuración de Betterlockscreen de Mabox.\n\n
-<b>Atajos de Mabox:</b>\n
-  W-A-l : Abrir la configuración de Betterlockscreen\n
-  W-l   : Bloquear la pantalla al instante\n"
-
+Lanza la GUI para generar temas, elegir temas o bloquear la pantalla.\n"
         ;;
     *)
         TITLE="Betterlockscreen Theme Manager"
@@ -107,35 +78,29 @@ Lanza la GUI para generar temas, elegir temas, bloquear la pantalla o abrir la c
         TXT_HELP="Help"
         TXT_EXIT="Exit"
         TXT_OK="Close"
-        TXT_CHOOSE_THEME="Choose an existing theme:"
-        TXT_NO_THEMES="No themes found in $THEMES_DIR"
+        TXT_ACTIVE_THEME="<b>Active theme: </b>"
         TXT_HELP_TEXT="<b>[SLOW PROCESS] betterlockscreen -u [image_path]:</b>\n
-Updates your lockscreen image including loginbox background and shadow.\n
-Optionally specify a custom image; leave empty to use the Mabox wallpaper.\n\n
+Updates your lockscreen including loginbox background and shadow.\n
+Optionally specify a custom image; leave empty to use the current wallpaper.\n\n
 <b>[QUICK PROCESS] betterlockscreen -l:</b>\n
 See instantly new changes (fonts, colors) without regenerating loginbox background or shadow.\n\n
 <b>betterlock-theme-generator:</b>\n
-Interactively create new color themes. Choose style, font, greeter text, and preview loginbox colors before saving.\n\n
+Interactively create new color themes. Choose style, font, and greeter text before saving.\n\n
 <b>betterlock-themes:</b>\n
-Select and apply saved themes from ~/.config/betterlockscreen/themes/. Applies instantly or with full wallpaper regeneration.\n\n
+Select and apply saved themes from ~/.config/betterlockscreen/themes/.\n\n
 <b>betterlock-menu:</b>\n
-Launch GUI to generate themes, choose themes, lock the screen, or open Mabox Betterlockscreen settings.\n\n
-<b>Mabox hotkeys:</b>\n
-  W-A-l : Open Betterlockscreen settings\n
-  W-l   : Lock screen instantly\n"
-        TXT_ACTIVE_THEME="<b>Active theme: </b>"
+Launch GUI to generate themes, choose themes, or lock the screen.\n"
         ;;
 esac
-
-# 📘 Functies
 
 get_header_image() {
     local cache="$HOME/.cache/betterlockscreen/current/wall_resize.png"
     local out="/tmp/yad-header.png"
+    local geom w h
 
-    local geom=$(xrandr | awk '/ primary / {print $4}' | cut -d+ -f1)
-    local w=$(echo $geom | cut -dx -f1)
-    local h=$(echo $geom | cut -dx -f2)
+    geom=$(xrandr | awk '/ primary / {print $4}' | cut -d+ -f1)
+    w=$(echo "$geom" | cut -dx -f1)
+    h=$(echo "$geom" | cut -dx -f2)
 
     magick "$cache" -crop "${w}x${h}+0+0" +repage \
         -resize 350x120^ \
@@ -145,35 +110,38 @@ get_header_image() {
     echo "$out"
 }
 
+show_help() {
+    yad --form --width=600 --height=650 --center \
+        --title="$TXT_HELP" \
+        --window-icon="$ICON" \
+        --field="Help:TXT" "$(echo -e "$TXT_HELP_TEXT")!" \
+        --button="$TXT_OK:0"
+}
+
 HEADER_IMG=$(get_header_image)
 
-
-        
-show_help() {
-    yad --form --width=600 --height=650 --center --title="$TXT_HELP" \
- --window-icon=$ICON \
-    --field="Help:TXT" "$(echo -e "$TXT_HELP_TEXT")!" --button="$TXT_OK:0"
-}
-
 show_main_menu() {
-    yad --width=350 --height=220 --center \
-        --title="$TITLE" \
-        --window-icon="$ICON" \
-        --image="$HEADER_IMG" \
-        --text="<b>$TITLE</b>\n\n$TXT_ACTIVE_THEME $ACTIVE_THEME\n\n\n$TXT_CHOOSE_ACTION" \
-        --text-align=center \
-        --button="🎨 $TXT_SELECT_THEME:1" \
-        --button="🛠️ $TXT_REGENERATE:2" \
-        --button="🛈 $TXT_HELP:3" \
-        --button="🚪 $TXT_EXIT:0"
+    while true; do
+        ACTIVE_THEME="$(sed 's/.*\///; s/\.[^.]*$//' "$CACHE_FILE" 2>/dev/null)"
 
-    case $? in
-        1) betterlock-themes ; betterlock-menu ;;
-        2) betterlock-theme-generator ; betterlock-menu ;;
-        3) show_help; show_main_menu ;;
-        0) exit 0 ;;
-    esac
+        yad --width=350 --height=220 --center \
+            --title="$TITLE" \
+            --window-icon="$ICON" \
+            --image="$HEADER_IMG" \
+            --text="<b>$TITLE</b>\n\n$TXT_ACTIVE_THEME $ACTIVE_THEME\n\n\n$TXT_CHOOSE_ACTION" \
+            --text-align=center \
+            --button="🎨 $TXT_SELECT_THEME:1" \
+            --button="🛠️ $TXT_REGENERATE:2" \
+            --button="🛈 $TXT_HELP:3" \
+            --button="🚪 $TXT_EXIT:0"
+
+        case $? in
+            1) betterlock-themes ;;
+            2) betterlock-theme-generator ;;
+            3) show_help ;;
+            *) exit 0 ;;
+        esac
+    done
 }
 
-# Start
 show_main_menu
