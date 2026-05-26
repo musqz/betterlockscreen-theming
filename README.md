@@ -1,5 +1,6 @@
 
-# Betterlockscreen Theme Toolkit (pl, es, nl, en)
+# Betterlockscreen Theme Toolkit 
+(pl, es, nl, en)
 
 This toolkit offers intuitive scripts for creating, selecting,
 and applying custom Betterlockscreen themes—including Cyberpunk,
