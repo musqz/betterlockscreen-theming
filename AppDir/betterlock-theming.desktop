@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Betterlockscreen Theming
+Exec=betterlock-menu
+Icon=betterlock-theming
+Type=Application
+Categories=Utility;Settings;
+Comment=Theme manager for betterlockscreen
