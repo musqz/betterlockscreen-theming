@@ -11,10 +11,6 @@ verification, and warning messages.
 
 ---
 
-# Quick Start...
-
-## Download the AppImage
-
 [![GitHub Release](https://img.shields.io/github/v/release/musqz/betterlockscreen-theming)](https://github.com/musqz/betterlockscreen-theming/releases/latest)
 
 Download the latest `betterlock-theming-*.AppImage` from the [Releases page](https://github.com/musqz/betterlockscreen-theming/releases/latest).
