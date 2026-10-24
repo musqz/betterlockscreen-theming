@@ -1,6 +1,3 @@
-> **This repository has moved to Codeberg: https://codeberg.org/linux-bird/betterlockscreen-theming**
-> It is archived here. Please use Codeberg for issues and pull requests.
-
 
 # Betterlockscreen Theme Toolkit 
 (pl, es, nl, en)
@@ -14,11 +11,12 @@ verification, and warning messages.
 
 ---
 
-[![GitHub Release](https://img.shields.io/github/v/release/musqz/betterlockscreen-theming)](https://github.com/musqz/betterlockscreen-theming/releases/latest)
+[![Release](https://img.shields.io/gitea/v/release/linux-bird/betterlockscreen-theming?gitea_url=https://codeberg.org)](https://codeberg.org/linux-bird/betterlockscreen-theming/releases/latest)
 
-Download the latest `betterlock-theming-*.AppImage` from the [Releases page](https://github.com/musqz/betterlockscreen-theming/releases/latest).
+The AppImage is built for releases up to **v2.1.0**: download `betterlock-theming-v2.1.0-x86_64.AppImage` from the [v2.1.0 release](https://codeberg.org/linux-bird/betterlockscreen-theming/releases/tag/v2.1.0).
+Newer versions are not packaged as an AppImage. Run the scripts from source, see [Installation](#installation).
 
-## Launch `betterlock-theming.AppImage`
+## Launch `betterlock-theming.AppImage` (v2.1.0)
 
   * Run **directly** via AppImage – no installation needed
 
@@ -126,8 +124,8 @@ When applying or previewing themes:
 1. Clone the repository:
 
 ```
-git clone https://gitlab.com/muzlabz/betterlockscreen-theme-creator
-cd betterlockscreen-theme-creator
+git clone https://codeberg.org/linux-bird/betterlockscreen-theming.git
+cd betterlockscreen-theming
 ```
 
 2. Install the scripts:
